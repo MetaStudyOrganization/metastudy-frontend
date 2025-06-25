@@ -21,7 +21,9 @@ const InfoOverlay: React.FC<InfoOverlayProps> = ({ visible }) => {
     const [textDone, setTextDone] = useState(false);
     const [volumeVisible, setVolumeVisible] = useState(false);
     const [freeCamVisible, setFreeCamVisible] = useState(false);
-    const [customComputer, setCustomComputer] = useState('computer');
+    const [customComputer, setCustomComputer] = useState(
+        localStorage.getItem('customComputer') || 'computer'
+    );
 
     const typeText = (
         i: number,
@@ -154,10 +156,7 @@ const InfoOverlay: React.FC<InfoOverlayProps> = ({ visible }) => {
                         onClick={() => {
                             setCustomComputer('computer');
                             localStorage.setItem('customComputer', 'computer');
-                            UIEventBus.dispatch(
-                                'switchComputer',
-                                customComputer
-                            );
+                            window.location.reload();
                         }}
                         style={{
                             backgroundColor:
@@ -178,10 +177,7 @@ const InfoOverlay: React.FC<InfoOverlayProps> = ({ visible }) => {
                         onClick={() => {
                             setCustomComputer('macbook');
                             localStorage.setItem('customComputer', 'macbook');
-                            UIEventBus.dispatch(
-                                'switchComputer',
-                                customComputer
-                            );
+                            window.location.reload();
                         }}
                         style={{
                             backgroundColor:

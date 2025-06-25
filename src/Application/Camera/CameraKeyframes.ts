@@ -16,15 +16,30 @@ export class CameraKeyframeInstance {
 
     update() {}
 }
+const customComputer = localStorage.getItem('customComputer');
 
+const macbook = {
+    position: new THREE.Vector3(0, 100, 2000),
+    focalPoint: new THREE.Vector3(0, 250, -1000),
+};
+const computer = {
+    position: new THREE.Vector3(0, 950, 2000),
+    focalPoint: new THREE.Vector3(0, 950, 0),
+};
 const keys: { [key in CameraKey]: CameraKeyframe } = {
     idle: {
         position: new THREE.Vector3(-20000, 12000, 20000),
         focalPoint: new THREE.Vector3(0, -1000, 0),
     },
     monitor: {
-        position: new THREE.Vector3(0, 100, 2000),
-        focalPoint: new THREE.Vector3(0, 250, -1000),
+        position:
+            customComputer === 'computer'
+                ? computer.position
+                : macbook.position,
+        focalPoint:
+            customComputer === 'computer'
+                ? computer.focalPoint
+                : macbook.focalPoint,
     },
     desk: {
         position: new THREE.Vector3(0, 1800, 5500),
