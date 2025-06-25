@@ -187,7 +187,8 @@ export default class MacBookMonitorScreen extends EventEmitter {
 
         // Set iframe attributes
         // PROD
-        iframe.src = 'http://localhost:3000/';
+        iframe.src = 'https://hackerthon-gules.vercel.app/';
+        iframe.allow = 'camera *; microphone *';
         /**
          * Use dev server is query params are present
          *

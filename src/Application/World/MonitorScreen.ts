@@ -187,7 +187,9 @@ export default class MonitorScreen extends EventEmitter {
 
         // Set iframe attributes
         // PROD
-        iframe.src = 'https://os.henryheffernan.com/';
+        iframe.src = 'https://hackerthon-gules.vercel.app/';
+        iframe.allow = 'camera *; microphone *';
+
         /**
          * Use dev server is query params are present
          *
