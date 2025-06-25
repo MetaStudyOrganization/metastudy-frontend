@@ -187,7 +187,7 @@ export default class MacBookMonitorScreen extends EventEmitter {
 
         // Set iframe attributes
         // PROD
-        iframe.src = 'https://os.henryheffernan.com/';
+        iframe.src = 'http://localhost:3000/';
         /**
          * Use dev server is query params are present
          *

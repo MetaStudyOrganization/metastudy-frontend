@@ -99,6 +99,21 @@ const sources: Resource[] = [
         type: 'gltfModel',
         path: 'models/macbook/macbook.glb',
     },
+    {
+        name: 'carpetModel',
+        type: 'gltfModel',
+        path: 'models/carpet/carpet.glb',
+    },
+    {
+        name: 'carpetTexture',
+        type: 'texture',
+        path: 'models/carpet/Carpet_baseColor.jpg',
+    },
+    {
+        name: 'bedModel',
+        type: 'gltfModel',
+        path: 'models/bed/bed.glb',
+    }
 ];
 
 export default sources;

@@ -18,6 +18,8 @@ import Loading from './Utils/Loading';
 
 import UI from './UI';
 import EventEmitter from './Utils/EventEmitter';
+import Carpet from './World/Carpet';
+import Bed from './World/Bed';
 
 let instance: Application | null = null;
 
@@ -32,6 +34,8 @@ export default class Application {
     camera: Camera;
     renderer: Renderer;
     world: World;
+    carpet: Carpet;
+    bed: Bed;
     mouse: Mouse;
     loading: Loading;
     ui: UI;
@@ -66,6 +70,8 @@ export default class Application {
         this.renderer = new Renderer();
         this.camera.createControls();
         this.world = new World();
+        //this.carpet = new Carpet();
+        //this.bed = new Bed();
 
         this.ui = new UI();
 

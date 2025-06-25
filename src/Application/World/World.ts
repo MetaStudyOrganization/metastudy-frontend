@@ -10,6 +10,7 @@ import Macbook from './Macbook';
 import MacBookMonitorScreen from './MacBookMonitorScreen';
 import Computer from './Computer';
 import MonitorScreen from './MonitorScreen';
+import Carpet from './Carpet';
 
 export default class World {
     application: Application;
@@ -25,6 +26,7 @@ export default class World {
     coffeeSteam: CoffeeSteam;
     cursor: Cursor;
     audioManager: AudioManager;
+    carpet: Carpet;
 
     constructor() {
         this.application = new Application();
