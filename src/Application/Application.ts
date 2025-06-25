@@ -17,6 +17,7 @@ import Stats from 'stats.js';
 import Loading from './Utils/Loading';
 
 import UI from './UI';
+import EventEmitter from './Utils/EventEmitter';
 
 let instance: Application | null = null;
 
@@ -35,12 +36,15 @@ export default class Application {
     loading: Loading;
     ui: UI;
     stats: Stats | undefined;
-
+    eventBus = new EventEmitter();
     constructor() {
         // Singleton
         if (instance) {
             return instance;
         }
+        this.eventBus.on('switchComputer', () => {
+            this.world.update();
+        });
 
         instance = this;
 

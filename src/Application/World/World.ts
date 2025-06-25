@@ -1,23 +1,27 @@
+import * as THREE from 'three';
 import Application from '../Application';
 import Resources from '../Utils/Resources';
-import ComputerSetup from './Computer';
-import MonitorScreen from './MonitorScreen';
 import Environment from './Environment';
 import Decor from './Decor';
 import CoffeeSteam from './CoffeeSteam';
 import Cursor from './Cursor';
-import Hitboxes from './Hitboxes';
 import AudioManager from '../Audio/AudioManager';
+import Macbook from './Macbook';
+import MacBookMonitorScreen from './MacBookMonitorScreen';
+import Computer from './Computer';
+import MonitorScreen from './MonitorScreen';
+
 export default class World {
     application: Application;
     scene: THREE.Scene;
     resources: Resources;
-
+    computer: Computer;
+    computerMonitorScreen: MonitorScreen;
     // Objects in the scene
     environment: Environment;
     decor: Decor;
-    computerSetup: ComputerSetup;
-    monitorScreen: MonitorScreen;
+    macbook: Macbook;
+    monitorScreen: MacBookMonitorScreen;
     coffeeSteam: CoffeeSteam;
     cursor: Cursor;
     audioManager: AudioManager;
@@ -26,22 +30,33 @@ export default class World {
         this.application = new Application();
         this.scene = this.application.scene;
         this.resources = this.application.resources;
-        // Wait for resources
+
         this.resources.on('ready', () => {
-            // Setup
             this.environment = new Environment();
             this.decor = new Decor();
-            this.computerSetup = new ComputerSetup();
-            this.monitorScreen = new MonitorScreen();
+
+            const selectedComputer = localStorage.getItem('customComputer'); // 🔹 선택된 기기 불러오기
+
+            if (selectedComputer === 'macbook') {
+                this.macbook = new Macbook();
+                const screenTransform = this.macbook.getScreenTransform();
+                this.monitorScreen = new MacBookMonitorScreen(
+                    screenTransform.position,
+                    screenTransform.rotation
+                );
+            } else {
+                this.computer = new Computer();
+                this.computerMonitorScreen = new MonitorScreen();
+            }
+
             this.coffeeSteam = new CoffeeSteam();
             this.audioManager = new AudioManager();
-            // const hb = new Hitboxes();
-            // this.cursor = new Cursor();
         });
     }
 
     update() {
         if (this.monitorScreen) this.monitorScreen.update();
+        if (this.computerMonitorScreen) this.computerMonitorScreen.update();
         if (this.environment) this.environment.update();
         if (this.coffeeSteam) this.coffeeSteam.update();
         if (this.audioManager) this.audioManager.update();

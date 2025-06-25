@@ -1,6 +1,7 @@
 import React, { useEffect, useRef, useState } from 'react';
 import FreeCamToggle from './FreeCamToggle';
 import MuteToggle from './MuteToggle';
+import UIEventBus from '../EventBus';
 
 interface InfoOverlayProps {
     visible: boolean;
@@ -20,6 +21,7 @@ const InfoOverlay: React.FC<InfoOverlayProps> = ({ visible }) => {
     const [textDone, setTextDone] = useState(false);
     const [volumeVisible, setVolumeVisible] = useState(false);
     const [freeCamVisible, setFreeCamVisible] = useState(false);
+    const [customComputer, setCustomComputer] = useState('computer');
 
     const typeText = (
         i: number,
@@ -139,6 +141,85 @@ const InfoOverlay: React.FC<InfoOverlayProps> = ({ visible }) => {
                     )}
                 </div>
             )}
+            <div>
+                {/* 선택 버튼 */}
+                <div
+                    style={{
+                        display: 'flex',
+                        gap: '10px',
+                        marginBottom: '20px',
+                    }}
+                >
+                    <button
+                        onClick={() => {
+                            setCustomComputer('computer');
+                            localStorage.setItem('customComputer', 'computer');
+                            UIEventBus.dispatch(
+                                'switchComputer',
+                                customComputer
+                            );
+                        }}
+                        style={{
+                            backgroundColor:
+                                customComputer === 'computer'
+                                    ? 'black'
+                                    : '#ecf0f1',
+                            color:
+                                customComputer === 'computer' ? '#fff' : '#333',
+                            padding: '5px 10px',
+                            border: 'none',
+                            borderRadius: '5px',
+                            cursor: 'pointer',
+                        }}
+                    >
+                        컴퓨터
+                    </button>
+                    <button
+                        onClick={() => {
+                            setCustomComputer('macbook');
+                            localStorage.setItem('customComputer', 'macbook');
+                            UIEventBus.dispatch(
+                                'switchComputer',
+                                customComputer
+                            );
+                        }}
+                        style={{
+                            backgroundColor:
+                                customComputer === 'macbook'
+                                    ? 'black'
+                                    : '#ecf0f1',
+                            color:
+                                customComputer === 'macbook' ? '#fff' : '#333',
+                            padding: '5px 10px',
+                            border: 'none',
+                            borderRadius: '5px',
+                            cursor: 'pointer',
+                        }}
+                    >
+                        맥북
+                    </button>
+                </div>
+
+                {/* 선택 결과 표시 */}
+                {customComputer !== '' && (
+                    <div
+                        style={{
+                            padding: '10px',
+                            border: '1px solid #ccc',
+                            borderRadius: '5px',
+                        }}
+                    >
+                        <p>
+                            선택한 기기:{' '}
+                            <strong>
+                                {customComputer === 'computer'
+                                    ? '컴퓨터'
+                                    : '맥북'}
+                            </strong>
+                        </p>
+                    </div>
+                )}
+            </div>
         </div>
     );
 };

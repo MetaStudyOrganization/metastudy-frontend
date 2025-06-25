@@ -94,6 +94,11 @@ const sources: Resource[] = [
         type: 'audio',
         path: 'audio/cc/type.mp3',
     },
+    {
+        name: 'macbookModel',
+        type: 'gltfModel',
+        path: 'models/macbook/macbook.glb',
+    },
 ];
 
 export default sources;

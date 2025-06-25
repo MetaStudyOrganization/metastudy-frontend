@@ -65,6 +65,16 @@ export default class Decor {
             new THREE.Vector3(2000, 2000, 2000)
         );
     }
+    createMacbookHitbox() {
+        this.createHitbox(
+            'macbookHitbox',
+            () => {
+                // this.camera.focusOnMonitor();
+            },
+            new THREE.Vector3(0, 450, 0),
+            new THREE.Vector3(2000, 2000, 2000)
+        );
+    }
 
     createHitbox(
         name: string,

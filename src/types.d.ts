@@ -32,6 +32,17 @@ type AudioResource = {
     path: string;
 };
 
+type MacbookResource = {
+    name: string;
+    type: 'gltfModel';
+    path: string;
+};
+type MacbookTextureResource = {
+    name: string;
+    type: 'texture';
+    path: string;
+};
+
 type EnclosingPlane = {
     size: THREE.Vector2;
     position: THREE.Vector3;
